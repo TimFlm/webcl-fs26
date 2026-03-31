@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <title>Css Container styled query</title>
+    <style>
+
+        @container style(--my-first-effect: redTilted) and style(--my-second-effect: tilted){
+            div {
+                color: darkgreen;
+                transform: rotate(-2deg);
+            }
+        }
+
+        @container style(--my-first-effect: redTilted) or style(--my-second-effect: tilted){
+            div {
+                color: red;
+                transform: rotate(2deg);
+            }
+        }
+
+        .myClass {
+            & div {
+                /* all my own styles */
+                background-color: peachpuff;
+                transform-origin: left top;
+            }
+            /* plus all styles from some other place */
+            --my-first-effect: redTilted;
+        }
+        .myOtherClass {
+            & div {
+                /* all my own styles */
+                background-color: green;
+                transform-origin: left top;
+            }
+            /* plus all styles from some other place */
+            --my-effect: redTilted;
+            --my-second-effect: tilted;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="myClass">
+    Outer
+    <div>Red and tilted in Chrome and Safari but not in FF.</div>
+</div>
+
+<div class="myOtherClass">
+    Outer untouched
+    <div>Inner untouched</div>
+</div>
+
+
+
+</body>
+
+</html>
